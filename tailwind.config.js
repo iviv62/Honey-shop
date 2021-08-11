@@ -4,7 +4,7 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     screens: {
-      'xs': '475px',
+      'xs': '300px',
       'sm': '640px',
       // => @media (min-width: 640px) { ... }
 
@@ -25,5 +25,7 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/aspect-ratio'),
+  ],
 }

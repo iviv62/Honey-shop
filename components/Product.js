@@ -6,7 +6,7 @@ const Product = ({Title, Description, Price, Availability, Img, Alt,Slug}) => {
         <div className="py-6 m-4">
         <div className="flex  min-w-sm max-w-md bg-white shadow-lg rounded-lg overflow-hidden">
 
-          <div className="relative w-[200px]">
+          <div className="relative w-[150px]">
           <Image
                     layout="fill"
                     objectFit="cover"

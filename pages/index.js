@@ -6,7 +6,7 @@ import SmallBanner from '../components/SmallBanner';
 import Footer from '../components/Footer';
 import ProductSection from "../components/ProductSection";
 import OrderingSection from "../components/OrderingSection"
-
+import {API_DOMAIN} from '../constants/Api'
 
 export default function Home({products}) {
   return (
@@ -14,7 +14,7 @@ export default function Home({products}) {
       <Head>
         <title>Honey</title>
         <link rel="icon" href="/favicon.ico" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine"></link>
+       
       </Head>
 
       
@@ -33,7 +33,7 @@ export default function Home({products}) {
 
 export const getStaticProps = async () =>{
 
-  let res  = await fetch('http://localhost:8000/api/products/')
+  let res  = await fetch(`${API_DOMAIN}api/products/`)
   const data = await res.json();
  
   return{

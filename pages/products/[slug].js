@@ -4,7 +4,7 @@ import bees from '../../images/bees.jpeg';
 import React from 'react';
 import ImageCarousel from "../../components/ImageCarousel";
 import OrderForm from '../../components/order/OrderForm';
-
+import {API_DOMAIN} from '../../constants/Api'
 
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
@@ -24,44 +24,12 @@ const customStyles = {
     },
   };
 
-const images = [
-    {
-        "id": 1,
-        "url": "https://placekitten.com/1024/768?image=1",
-       
-    },
-    {
-        "id": 2,
-        "url": "https://placekitten.com/1024/768?image=2",
-       
-    },
-    {
-        "id": 3,
-        "url": "https://placekitten.com/1000/1768?image=3",
-       
-    },
-    {
-        "id": 4,
-        "url": "https://placekitten.com/1024/768?image=4",
-        "title": "Lorem Ipsum",
-        "description":
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos assumenda, velit explicabo non at consequuntur accusamus hic optio alias error nisi sunt sint veniam aperiam similique dolor fugit itaque minima!"
-    },
-    {
-        "id": 5,
-        "url": "https://placekitten.com/1024/768?image=5",
-        "title": "Lorem Ipsum",
-        "description":
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos assumenda, velit explicabo non at consequuntur accusamus hic optio alias error nisi sunt sint veniam aperiam similique dolor fugit itaque minima!"
-    },
-]
+
 
 
 
 const product = ({product}) => {
-    console.log(product)
-
-    
+   
 
     const [modalIsOpen, setIsOpen] = React.useState(false);
     function openModal() {
@@ -88,7 +56,7 @@ const product = ({product}) => {
                 
             </Head>
 
-                <div className="flex flex-col  w-1/2 min-w-[400px] ">
+                <div className="flex flex-col  w-1/2 min-w-[300px] ">
                     <ImageCarousel images={product.product_images} />
                 </div>
     
@@ -97,7 +65,7 @@ const product = ({product}) => {
                 <h2 className="mb-2 leading-tight tracking-tight font-bold text-gray-800 text-2xl md:text-3xl">{product.title}</h2>
 
 
-                <div className="flex items-center space-x-4 my-4">
+                <div className="flex items-center space-x-4 my-4 flex-wrap">
                     <div>
                         <div className="rounded-lg bg-gray-100 flex py-2 px-3 items-center">
                             <span className="font-bold text-yellow-600 text-3xl mr-1 mt-1">{product.price}</span>
@@ -140,14 +108,13 @@ const product = ({product}) => {
 export default product
 
 export const getStaticPaths = async ()=>{
-    let res  = await fetch('http://localhost:8000/api/products/')
+    let res  = await fetch(`${API_DOMAIN}api/products/`)
     const data = await res.json();
     
    
     const paths = data.results.map((product)=>{
         return{
             params:{
-                id: product.id,
                 slug:product.slug,
                 
             }
@@ -162,10 +129,8 @@ export const getStaticPaths = async ()=>{
 
 export const getStaticProps = async (context) => {
     const slug = context.params.slug
-    console.log(context)
-    const res = await fetch('http://localhost:8000/api/products/'+slug)
+    const res = await fetch(`${API_DOMAIN}api/products/`+slug)
     const data = await res.json()
-    console.log(data)
     return{
         props:{product:data}
     }

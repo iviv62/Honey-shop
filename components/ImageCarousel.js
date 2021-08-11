@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
+import Image from 'next/image'
 
-
-const ImageCarousel  = ({ images }) => {
+  const ImageCarousel  = ({ images }) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [selectedImage, setSelectedImage] = useState();
   const carouselItemsRef = useRef([]);
@@ -14,6 +14,7 @@ const ImageCarousel  = ({ images }) => {
       );
 
       setSelectedImageIndex(0);
+      
       setSelectedImage(images[0]);
     }
   }, [images]);
@@ -48,24 +49,38 @@ const ImageCarousel  = ({ images }) => {
 
   return (
     <div className="carousel-container">
-      
-      <div
+      <div className="relative flex  h-[520px]">
+      <Image
         className="selected-image"
-        style={{ backgroundImage: `url(${selectedImage?.image})` }} />
+        layout="fill"
+        objectFit="contain"
+        
+        src={selectedImage?selectedImage.image:"/placeholder.jpg"} 
+        alt={selectedImage?selectedImage.alt:"loading"}
+        />
 
-      <div className="carousel">
-        <div className="carousel__images flex-wrap">
-          {images &&
+        </div>
+        
+
+      <div className="carousel ">
+        <div className="carousel__images flex-wrap  justify-center">
+          {
             images.map((image, idx) => (
-              <div
+              
+              <Image
                 onClick={() => handleSelectedImageChange(idx)}
-                style={{ backgroundImage: `url(${image.image})` }}
+                src={image.image}
+                alt={image.alt}
+                
+                width={100}
+                height={100}
+                objectFit="cover"
                 key={image.id}
-                className={`carousel__image ${
+                className={`carousel__image  ${
                   selectedImageIndex === idx && "carousel__image-selected"
                 }`}
                 ref={(el) => (carouselItemsRef.current[idx] = el)}
-              />
+              ></Image>
             ))}
         </div>
        

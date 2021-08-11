@@ -13,9 +13,10 @@ const TopMenu = () => {
     
         <header className="flex bg-black pt-2 items-center justify-around shadow-md  ">
        <Link href="/">
-            <div className="relative flex items-center h-[100px] pl-2 ">
+            <div className="relative flex items-center h-[50px]  pl-2 ">
                 <Image
                 className="hover:cursor-pointer"
+                objectFit="contain"
                 src={logo}
                 alt="logo" />
             </div>
@@ -28,7 +29,7 @@ const TopMenu = () => {
             +359 895 999 000
         </div>
         {/*Menu*/}
-        <div className="flex space-x-8 pr-4">
+        <div className="flex space-x-8 pr-4 xl:flex md:flex sm:hidden xs:hidden">
             <Link href="/" ><a className="text-white text-lg hover:cursor-pointer hover:text-yellow-500 transition-colors duration-300 xl:block md:block sm:hidden xs:hidden">Home</a></Link>
             <Link href="/products"><a className="text-white text-lg hover:cursor-pointer hover:text-yellow-500 transition-colors duration-300 xl:block md:block sm:hidden xs:hidden">Products</a></Link>
             <Link href="/about"><a className="text-white text-lg hover:cursor-pointer hover:text-yellow-500 transition-colors duration-300 xl:block md:block sm:hidden xs:hidden">About Us</a></Link>
@@ -46,7 +47,7 @@ const TopMenu = () => {
         </svg>
 
          {/*Mobile Menu*/}
-         <div className={` absolute top-[107px]  right-0 duration-500 ease-in-out text-black font-semibold flex flex-row self-end z-50 bg-yellow-500 opacity-90 w-[300px]  ${active?"visible opacity-100":"invisible opacity-0"}`} >
+         <div className={` absolute top-[87px]  right-0 duration-500 ease-in-out text-black font-semibold flex flex-row self-end z-50 bg-yellow-500 opacity-90 w-[300px]  ${active?"visible opacity-100":"invisible opacity-0"}`} >
          <div className={`flex flex-col text-center transition-all duration-500 ease-in-out ${active?"visible opacity-100":"invisible opacity-0"}`} >
          
            <div  className="w-[300px]  hover:bg-black text-white  duration-500 ease-in-out cursor-pointer  "><Link href="/"><a>Home</a></Link></div>

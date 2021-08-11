@@ -1,6 +1,7 @@
 
 import CardsSection from '../components/blog/CardsSection';
 import Head from 'next/head';
+import {API_DOMAIN} from '../constants/Api'
 const blog = ({posts}) => {
     return (
         <div className="flex flex-col min-h-screen">
@@ -26,7 +27,7 @@ export default blog
 
 export const getStaticProps = async () =>{
 
-    let res  = await fetch('http://localhost:8000/api/posts/')
+    let res  = await fetch(`${API_DOMAIN}api/posts/`)
     const data = await res.json();
    
     return{
