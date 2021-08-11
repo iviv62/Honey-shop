@@ -1,7 +1,7 @@
 import Product from "../components/Product"
 import Image from 'next/image';
 import honeycomb from '../images/honeycomb.png';
-const products =[
+/*const products =[
     {
         Title:"Honey",
         Description:"lormdas dsakl dsakkp  dsap pd sa dppsad sp sa dskalldsklasdk  dsapldsal",
@@ -40,9 +40,9 @@ const products =[
     },
 
 
-]
+]*/
 
-const ProductSection = () => {
+const ProductSection = ({products}) => {
     return (
         <div className="flex flex-col items-center  ">
             <div className="flex  items-center py-12 justify-center">
@@ -58,7 +58,14 @@ const ProductSection = () => {
 
             <div className="flex flex-wrap pb-20 justify-center  max-w-[1500px]">
                 {products.map((item)=>
-                    <Product Title={item.Title} Price={item.Price} Availability={item.Availability} Description={item.Description}/>
+                    <Product 
+                    key={item.id} Id={item.id} Title={item.title} Price={item.price} 
+                    Availability={"in stock"} 
+                    Description={item.description} 
+                    Img={item.product_images[0].image} 
+                    Alt={item.product_images[0].alt} 
+                    Slug={item.slug}
+                    />
             )}
             </div>
         </div>

@@ -8,7 +8,7 @@ import ProductSection from "../components/ProductSection";
 import OrderingSection from "../components/OrderingSection"
 
 
-export default function Home() {
+export default function Home({products}) {
   return (
     <div className="flex flex-col min-h-screen flex-grow ">
       <Head>
@@ -22,13 +22,23 @@ export default function Home() {
       <Banner/>
       <Section/>
       <SmallBanner/>
-      <ProductSection/>
+      <ProductSection products={products}/>
       <OrderingSection/>
       </div>
-      
-      
-
-      
+  
     </div>
   )
+}
+
+
+export const getStaticProps = async () =>{
+
+  let res  = await fetch('http://localhost:8000/api/products/')
+  const data = await res.json();
+ 
+  return{
+    props:{
+      products:data.results
+    }
+}
 }

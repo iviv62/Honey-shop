@@ -1,13 +1,10 @@
 import BlogCard from "./BlogCard"
-const CardsSection = () => {
+const CardsSection = ({data}) => {
     return (
         <div className="flex items-center justify-center container  mx-auto my-auto  flex-wrap">
-            <BlogCard/>
-            <BlogCard/>
-            <BlogCard/>
-            <BlogCard/>
-            <BlogCard/>
-            <BlogCard/>
+        {data.map(post=><BlogCard title={post.title} summary={post.summary} slug={post.slug}/>)}
+            
+            
         </div>
     )
 }

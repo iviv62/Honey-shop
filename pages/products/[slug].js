@@ -8,6 +8,7 @@ import OrderForm from '../../components/order/OrderForm';
 
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
+import ProductSection from '../../components/ProductSection';
 
 Modal.setAppElement('#__next');
 
@@ -57,7 +58,8 @@ const images = [
 
 
 
-const product = () => {
+const product = ({product}) => {
+    console.log(product)
 
     
 
@@ -79,23 +81,26 @@ const product = () => {
         <div className=" px-10 flex  min-h-screen py-10 flex  flex-wrap justify-center ">
 
             <Head>
-                <title>Product</title>
+                <title>{product.meta_title}</title>
+                <meta name="description" content={product.meta_description}/>
                 <link rel="icon" href="/favicon.ico" />
+                <meta charset="UTF-8"></meta>
+                
             </Head>
 
                 <div className="flex flex-col  w-1/2 min-w-[400px] ">
-                    <ImageCarousel images={images} />
+                    <ImageCarousel images={product.product_images} />
                 </div>
     
 
             <div className="flex flex-col w-1/2   ">
-                <h2 className="mb-2 leading-tight tracking-tight font-bold text-gray-800 text-2xl md:text-3xl">Lorem ipsum dolor, sit amet consectetur, adipisicing elit.</h2>
+                <h2 className="mb-2 leading-tight tracking-tight font-bold text-gray-800 text-2xl md:text-3xl">{product.title}</h2>
 
 
                 <div className="flex items-center space-x-4 my-4">
                     <div>
                         <div className="rounded-lg bg-gray-100 flex py-2 px-3 items-center">
-                            <span className="font-bold text-yellow-600 text-3xl mr-1 mt-1">25</span>
+                            <span className="font-bold text-yellow-600 text-3xl mr-1 mt-1">{product.price}</span>
                             <span className="text-yellow-500">лв.</span>
                         </div>
                     </div>
@@ -105,7 +110,7 @@ const product = () => {
                     </div>
                 </div>
 
-                <p className="text-gray-500">Lorem ipsum, dolor sit, amet consectetur adipisicing elit. Vitae exercitationem porro saepe ea harum corrupti vero id laudantium enim, libero blanditiis expedita cupiditate a est.</p>
+                <p className="text-gray-500">{product.description}</p>
 
                 <div className="flex py-4 space-x-4">
 
@@ -133,3 +138,35 @@ const product = () => {
 }
 
 export default product
+
+export const getStaticPaths = async ()=>{
+    let res  = await fetch('http://localhost:8000/api/products/')
+    const data = await res.json();
+    
+   
+    const paths = data.results.map((product)=>{
+        return{
+            params:{
+                id: product.id,
+                slug:product.slug,
+                
+            }
+        }
+    })
+
+    return{
+        paths,
+        fallback:false,
+    }
+}
+
+export const getStaticProps = async (context) => {
+    const slug = context.params.slug
+    console.log(context)
+    const res = await fetch('http://localhost:8000/api/products/'+slug)
+    const data = await res.json()
+    console.log(data)
+    return{
+        props:{product:data}
+    }
+}

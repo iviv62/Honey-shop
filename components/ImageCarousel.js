@@ -51,7 +51,7 @@ const ImageCarousel  = ({ images }) => {
       
       <div
         className="selected-image"
-        style={{ backgroundImage: `url(${selectedImage?.url})` }} />
+        style={{ backgroundImage: `url(${selectedImage?.image})` }} />
 
       <div className="carousel">
         <div className="carousel__images flex-wrap">
@@ -59,7 +59,7 @@ const ImageCarousel  = ({ images }) => {
             images.map((image, idx) => (
               <div
                 onClick={() => handleSelectedImageChange(idx)}
-                style={{ backgroundImage: `url(${image.url})` }}
+                style={{ backgroundImage: `url(${image.image})` }}
                 key={image.id}
                 className={`carousel__image ${
                   selectedImageIndex === idx && "carousel__image-selected"

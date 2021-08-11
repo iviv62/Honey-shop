@@ -2,7 +2,7 @@ import Image from 'next/image';
 import bees from '../../images/bees.jpeg';
 import Link from 'next/link'
 
-const BlogCard = () => {
+const BlogCard = ({img, alt , title, summary, slug}) => {
     return (
 
 
@@ -15,8 +15,8 @@ const BlogCard = () => {
         alt="bees" />
         
         <div  className="p-4">
-          <h3  className="font-medium text-gray-600 text-lg my-2 uppercase">Title</h3>
-          <p  className="text-justify">The be might what days revellers, which sought to a nor. Land from to suits his some. Saw him counsel begun mother though but. Ofttimes soils of since mighty pollution.</p>
+          <h3  className="font-medium text-gray-600 text-lg my-2 uppercase">{title}</h3>
+          <p  className="text-justify">{summary}</p>
           <div  className="mt-5">
             <Link href="/post"  ><span className="hover:bg-gray-700  py-2 px-3 font-semibold hover:text-white cursor-pointer bg-gray-400 text-gray-100">Read More</span></Link>
           </div>
