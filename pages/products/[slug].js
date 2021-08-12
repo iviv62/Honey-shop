@@ -93,7 +93,7 @@ const product = ({product}) => {
                         style={customStyles}
                         contentLabel="Example Modal"
                     >
-                    <OrderForm/>
+                    <OrderForm product_title={product.title}/>
                     </Modal>
 
                 </div>

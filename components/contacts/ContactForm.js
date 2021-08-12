@@ -11,6 +11,7 @@ const ContactForm = () => {
         email: "",
         message:""
       });
+      
     const handleSubmit=(event)=> {
         event.preventDefault();
         if(phonenumber(fields.phone)){

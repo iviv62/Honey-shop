@@ -1,38 +1,71 @@
-const OrderForm = () => {
+import React,{useState} from 'react';
+import { useFormFields } from "../../hooks/customHooks";
+import {API_DOMAIN} from '../../constants/Api';
+import {phonenumberValidator} from '../../hooks/validators';
+import {postData} from '../../hooks/requests'
+
+const OrderForm = ({product_title}) => {
+    const [fields, handleFieldChange] = useFormFields({
+        names: "",
+        phone: "",
+        message:"",
+        product_title:product_title.product_title
+    });
+    const [isLoading, setIsLoading] = useState(false);
+    const [isSent, setIsSent] = useState(false)
+    
+    const handleSubmit=(event)=> {
+        event.preventDefault();
+        if(phonenumberValidator(fields.phone)){
+            setIsLoading(true);
+            console.log(fields)
+            postData(`${API_DOMAIN}api/orders/`,fields).then(data => {
+                setIsLoading(false);
+                setIsSent(true);
+                console.log(data);
+              });
+            
+        }
+            
+            
+        }
+       
+    
+
+
     return (
         <div className="leading-loose">
-            <form className="max-w-3xl min-w-[400px] m-4 p-10 bg-white rounded ">
-                <p className="text-gray-800 font-medium">Order information</p>
-                <div className="">
-                    <label className="block text-sm text-gray-00" for="cus_name">Name</label>
-                    <input className="w-full mt-2 py-3 px-3 text-gray-700 bg-gray-200 rounded dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-800 font-semibold focus:border-yellow-500 focus:outline-none "  name="cus_name" type="text" required="true" placeholder="Your Name" aria-label="Name" />
+            <form onSubmit={handleSubmit} className="max-w-3xl min-w-[400px] m-4 p-10 bg-white rounded ">
+                <p className="text-gray-800 font-medium text-lg">Изпратете ни вашия телефонен номер и ние ще ви се обадим да потвърдим поръчката ви.</p>
+                <div className="mt-2">
+                    <label  className="hidden block text-sm text-gray-00" htmlFor="cus_name">Name</label>
+                    <input value={fields.names}  onChange={handleFieldChange} id="names" className="w-full mt-2 py-3 px-3 text-gray-700 bg-gray-200 rounded dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-800 font-semibold focus:border-yellow-500 focus:outline-none "  name="cus_name" type="text"  placeholder="Имена" aria-label="Name" />
                 </div>
                 <div className="mt-2">
-                    <label className="block text-sm text-gray-600" for="cus_email">Email</label>
-                    <input className="w-full mt-2 py-3 px-3 text-gray-700 bg-gray-200 rounded dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-800 font-semibold focus:border-yellow-500 focus:outline-none "  type="email" required="true" placeholder="Your Email" aria-label="Email" />
+                    <label className="hidden text-sm block text-gray-600" htmlFor="cus_email">Phone</label>
+                    <input required value={fields.phone}  onChange={handleFieldChange} id="phone" className="w-full mt-2 py-3 px-3 text-gray-700 bg-gray-200 rounded dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-800 font-semibold focus:border-yellow-500 focus:outline-none "  type="text"  placeholder="Телефон" aria-label="Email" />
                 </div>
                 <div className="mt-2">
-                    <label className=" block text-sm text-gray-600" for="cus_email">Address</label>
-                    <input className="w-full mt-2 py-3 px-3 text-gray-700 bg-gray-200 rounded dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-800 font-semibold focus:border-yellow-500 focus:outline-none " type="text" required="true" placeholder="Street" aria-label="Email" />
-                </div>
-                <div className="mt-2">
-                    <label className="hidden text-sm block text-gray-600" for="cus_email">City</label>
-                    <input className="w-full mt-2 py-3 px-3 text-gray-700 bg-gray-200 rounded dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-800 font-semibold focus:border-yellow-500 focus:outline-none  "  type="text" required="" placeholder="City" aria-label="Email" />
-                </div>
-                <div className="mt-2">
-                    <label className="hidden text-sm block text-gray-600" for="cus_email">Phone</label>
-                    <input className="w-full mt-2 py-3 px-3 text-gray-700 bg-gray-200 rounded dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-800 font-semibold focus:border-yellow-500 focus:outline-none "  type="text" required="true" placeholder="Phone" aria-label="Email" />
+    
+                <input hidden id="product_title" value={product_title} className="w-full mt-2 py-3 px-3 text-gray-700 bg-gray-200 rounded dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-800 font-semibold focus:border-yellow-500 focus:outline-none "  type="text"   />
                 </div>
                 <div className="flex flex-col mt-2">
-                <label for="text" className="hidden">Message</label>
-                <textarea  placeholder="Message" className="w-full mt-2 py-3 px-3 text-gray-700 bg-gray-200 rounded dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-800 font-semibold focus:border-yellow-500 focus:outline-none "/>
+                <label htmlFor="text" className="hidden">Message</label>
+                <textarea value={fields.message}  onChange={handleFieldChange} id="message"  placeholder="Съобщение" className="w-full mt-2 py-3 px-3 text-gray-700 bg-gray-200 rounded dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-800 font-semibold focus:border-yellow-500 focus:outline-none "/>
                 </div>
                 
                 
                 <div className="mt-4">
-                <button type="button" className="h-14 px-6 py-2 transition-colors duration-500 font-semibold rounded-xl bg-yellow-500 hover:bg-black text-white">
-                Submit
-            </button>
+                {isSent &&( <p class="text-green-500 text-md italic">Поръчката ви е успешна. Очаквайте обаждане в рамките на 24 часа, за да потвърдим поръчката</p>)}
+                <button type="submit" className="md:w-32 bg-yellow-600 hover:bg-blue-dark text-white font-bold py-3 px-6 rounded-lg mt-3 hover:bg-black transition ease-in-out duration-300">
+                    {isLoading?
+                        (<div class=" flex justify-center items-center">
+                        <div class="loader ease-linear rounded-full border-2 border-t-2 border-gray-200 h-5 w-5"></div>
+                      </div> ):
+                        "Submit"
+                    
+                    }
+                </button>
                 </div>
             </form>
         </div>

@@ -8,8 +8,6 @@ const FAQ = ({data}) => {
 <section className="shadow row">
     <div className="tabs">
     {data.map(item =>
-
-   
         <div className="border-b tab">
             <div className="border-l-2 border-transparent relative">
                 <input className="w-full absolute z-10 cursor-pointer opacity-0 h-5 top-6" type="checkbox" id="chck1"/>
