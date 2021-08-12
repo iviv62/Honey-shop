@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import bees from '../../images/bees.jpeg';
 import {API_DOMAIN} from '../../constants/Api'
-
+import ReactHtmlParser from 'react-html-parser';
 
 
 const post = ({post}) => {
@@ -25,7 +25,7 @@ const post = ({post}) => {
       </div>
 
       <div class="px-4 lg:px-0 mt-12 text-gray-700 max-w-screen-md mx-auto text-lg leading-relaxed">
-        <p>{post.content}</p>
+      { ReactHtmlParser(post.content) }
 
       </div>
     </main>
