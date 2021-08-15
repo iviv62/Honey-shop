@@ -54,7 +54,7 @@ import Image from 'next/image'
         className="selected-image"
         layout="fill"
         objectFit="contain"
-        
+        priority={true}
         src={selectedImage?selectedImage.image:"/placeholder.jpg"} 
         alt={selectedImage?selectedImage.alt:"loading"}
         />
@@ -71,7 +71,7 @@ import Image from 'next/image'
                 onClick={() => handleSelectedImageChange(idx)}
                 src={image.image}
                 alt={image.alt}
-                
+                priority={true}
                 width={100}
                 height={100}
                 objectFit="cover"
