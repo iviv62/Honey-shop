@@ -6,13 +6,11 @@ import ImageCarousel from "../../components/ImageCarousel";
 import OrderForm from '../../components/order/OrderForm';
 import {API_DOMAIN} from '../../constants/Api'
 
-import ReactDOM from 'react-dom';
+
 import Modal from 'react-modal';
-import ProductSection from '../../components/ProductSection';
+
 
 Modal.setAppElement('#__next');
-
-
 const customStyles = {
     content: {
       top: '50%',
@@ -23,11 +21,6 @@ const customStyles = {
       transform: 'translate(-50%, -50%)',
     },
   };
-
-
-
-
-
 const product = ({product}) => {
    
 
@@ -46,7 +39,7 @@ const product = ({product}) => {
       }
 
     return (
-        <div className=" px-10 flex  min-h-screen py-10 flex  flex-wrap justify-center ">
+        <div className=" px-10 flex  min-h-screen py-10   flex-wrap justify-center ">
 
             <Head>
                 <title>{product.meta_title}</title>
@@ -73,8 +66,8 @@ const product = ({product}) => {
                         </div>
                     </div>
                     <div className="flex flex-col">
-                        <p className="text-green-500 text-xl font-semibold">Get free delivery</p>
-                        <p className="text-gray-400 text-sm">by ordering goods for more than 50lv</p>
+                        <p className="text-green-500 text-xl font-semibold">Безплатна доставка</p>
+                        <p className="text-gray-400 text-sm">При поръчка на стоки над 55 лв. </p>
                     </div>
                 </div>
 
@@ -84,7 +77,7 @@ const product = ({product}) => {
 
 
                     <button type="button" onClick={openModal} className="h-14 px-6 py-2 transition-colors duration-500 font-semibold rounded-xl bg-yellow-500 hover:bg-black text-white">
-                      Order Now
+                      Поръчай за 60 секунди
                     </button>
                     <Modal
                         isOpen={modalIsOpen}

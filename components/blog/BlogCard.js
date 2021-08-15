@@ -18,7 +18,7 @@ const BlogCard = ({image, image_alt , title, summary, slug}) => {
           <h3  className="font-medium text-gray-600 text-lg my-2 uppercase">{title}</h3>
           <p  className="text-justify">{summary}</p>
           <div  className="mt-5">
-            <Link href={`posts/${slug}`}  ><a className="hover:bg-gray-700  py-2 px-3 font-semibold hover:text-white cursor-pointer bg-gray-400 text-gray-100">Read More</a></Link>
+            <Link href={`posts/${slug}`}  ><a className="hover:bg-yellow-600  py-2 px-3 font-semibold hover:text-white cursor-pointer bg-gray-400 text-gray-100">Прочетете повече</a></Link>
           </div>
         </div>
       </div>

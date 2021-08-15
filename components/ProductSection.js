@@ -53,14 +53,14 @@ const ProductSection = ({products}) => {
                     src={honeycomb}
                     alt="honeycomb" />
                 
-            <h3 className="text-4xl  font-bold">Products</h3>
+            <h3 className="text-4xl  font-bold">Продукти</h3>
             </div>
 
             <div className="flex flex-wrap pb-20 justify-center  max-w-[1500px]">
                 {products.map((item)=>
                     <Product 
                     key={item.id} Id={item.id} Title={item.title} Price={item.price} 
-                    Availability={"in stock"} 
+                    Availability={item.in_stock==true?"Наличен":"Изчерпан"} 
                     Description={item.description} 
                     Img={item.product_images[0].image} 
                     Alt={item.product_images[0].alt} 

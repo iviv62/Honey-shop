@@ -5,6 +5,9 @@ import {API_DOMAIN} from '../../constants/Api'
 const ContactForm = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [isSent, setIsSent] = useState(false)
+   
+    const [hasFailed, setFailed] = useState(false)
+    const [error, setError] = useState("");
     const [fields, handleFieldChange] = useFormFields({
         names: "",
         phone: "",
@@ -18,7 +21,13 @@ const ContactForm = () => {
             setIsLoading(true);
             postData(`${API_DOMAIN}api/contact-submissions/`,fields).then(data => {
                 setIsLoading(false);
-                setIsSent(true);
+                if(data.phone){
+                    setIsSent(true);
+                    setFailed(false)
+                }else{
+                    setFailed(true)
+                    setError("Съобщението не е изпратено! Опитайте по-късно.")
+                }
               });
             
         }
@@ -31,10 +40,10 @@ const ContactForm = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2">
                     <div className="p-6 mr-2 bg-gray-100 dark:bg-gray-800 sm:rounded-lg">
                         <h1 className="text-4xl sm:text-5xl text-gray-800 dark:text-white font-extrabold tracking-tight">
-                            Get in touch
+                            Свържете се с нас.
                         </h1>
                         <p className="text-normal text-lg sm:text-2xl font-medium text-gray-600 dark:text-gray-400 mt-2">
-                            Fill in the form to start a conversation
+                            Попълнете формата за да ни изпратите съобщение!
                         </p>
 
                         
@@ -60,31 +69,32 @@ const ContactForm = () => {
 
                     <form onSubmit={handleSubmit} className="p-6 flex flex-col justify-center">
                         <div className="flex flex-col">
-                            <label htmlFor="name" className="hidden">Full Name</label>
-                            <input required value={fields.names}  onChange={handleFieldChange} type="name" name="names" id="names" placeholder="Full Name" className="w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-yellow-500 focus:outline-none"/>
+                            <label htmlFor="name" className="hidden">Имена</label>
+                            <input required value={fields.names}  onChange={handleFieldChange} type="name" name="names" id="names" placeholder="Имена" className="w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-yellow-500 focus:outline-none"/>
                         </div>
 
                         <div className="flex flex-col mt-2">
                             <label htmlFor="email" className="hidden">Email</label>
-                            <input required  value={fields.email} onChange={handleFieldChange} type="email" name="email" id="email" placeholder="Email" className="w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-yellow-500 focus:outline-none"/>
+                            <input required  value={fields.email} onChange={handleFieldChange} type="email" name="email" id="email" placeholder="Имейл" className="w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-yellow-500 focus:outline-none"/>
                         </div>
 
                         <div className="flex flex-col mt-2">
                             <label htmlFor="tel" className="hidden">Number</label>
-                            <input required value={fields.phone}  onChange={handleFieldChange} type="tel" name="tel" id='phone' placeholder="Telephone Number" className="w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-yellow-500 focus:outline-none"/>
+                            <input required value={fields.phone}  onChange={handleFieldChange} type="tel" name="tel" id='phone' placeholder="Телефонен номер" className="w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-yellow-500 focus:outline-none"/>
                         </div>
 
                         <div className="flex flex-col mt-2">
                             <label htmlFor="text" className="hidden">Message</label>
-                            <textarea required value={fields.message}  onChange={handleFieldChange} id="message"  placeholder="Message" className="w-100 h-52 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-yellow-500 focus:outline-none"/>
+                            <textarea required value={fields.message}  onChange={handleFieldChange} id="message"  placeholder="Съобщение" className="w-100 h-52 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-yellow-500 focus:outline-none"/>
                         </div>
-                        {isSent &&( <p class="text-green-500 text-md italic">Your message is sent successfully</p>)}
+                        {isSent &&( <p class="text-green-500 text-md italic">Съобщението е изпратено успешно!</p>)}
+                        {hasFailed &&( <p class="text-red-500 text-md italic">{error}</p>)}
                         <button type="submit" className="md:w-32 bg-yellow-600 hover:bg-blue-dark text-white font-bold py-3 px-6 rounded-lg mt-3 hover:bg-black transition ease-in-out duration-300">
                             {isLoading?
                                 (<div class=" flex justify-center items-center">
                                 <div class="loader ease-linear rounded-full border-2 border-t-2 border-gray-200 h-5 w-5"></div>
                               </div> ):
-                                "Submit"
+                                "Изпрати"
                             
                             }
                         </button>

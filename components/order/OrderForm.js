@@ -9,27 +9,33 @@ const OrderForm = ({product_title}) => {
         names: "",
         phone: "",
         message:"",
-        product_title:product_title.product_title
+        product_title:product_title
     });
     const [isLoading, setIsLoading] = useState(false);
     const [isSent, setIsSent] = useState(false)
+    const [hasFailed, setFailed] = useState(false)
+    const [error, setError] = useState("");
     
     const handleSubmit=(event)=> {
         event.preventDefault();
         if(phonenumberValidator(fields.phone)){
-            setIsLoading(true);
-            console.log(fields)
+            setIsLoading(true);   
             postData(`${API_DOMAIN}api/orders/`,fields).then(data => {
                 setIsLoading(false);
-                setIsSent(true);
-                console.log(data);
+                if(data.phone){
+                    setIsSent(true);
+                    setFailed(false)
+                }else{
+                    setFailed(true)
+                    setError("Поръчката е неуспешна. Опитайпе по-късно или използвайте телефона за връзка")
+                }
               });
             
+        }else{
+            setFailed(true)
+            setError("Невалиден номер!")
         }
-            
-            
-        }
-       
+        }   
     
 
 
@@ -57,6 +63,7 @@ const OrderForm = ({product_title}) => {
                 
                 <div className="mt-4">
                 {isSent &&( <p class="text-green-500 text-md italic">Поръчката ви е успешна. Очаквайте обаждане в рамките на 24 часа, за да потвърдим поръчката</p>)}
+                {hasFailed &&( <p class="text-red-500 text-md italic">{error}</p>)}
                 <button type="submit" className="md:w-32 bg-yellow-600 hover:bg-blue-dark text-white font-bold py-3 px-6 rounded-lg mt-3 hover:bg-black transition ease-in-out duration-300">
                     {isLoading?
                         (<div class=" flex justify-center items-center">

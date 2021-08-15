@@ -8,9 +8,9 @@ const SmallBanner = () => {
         style={{ backgroundImage: `url('background.png')` }} >
             
 
-            <div className="text-white text-5xl font-bold">
-            Free Delivery
-                
+            <div className="text-white text-5xl font-bold flex flex-col">
+            Безплатна доставка
+            <span className="text-white text-sm font-bold">При закупуване на стоки над 55 лв.</span>  
             </div>
             <div className="relative flex items-center h-17 pl-2 ">
                     <Image

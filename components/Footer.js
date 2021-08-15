@@ -15,7 +15,7 @@ const Footer = () => {
             </div>
 
             <div className="flex items-center">
-            <span className="text-white  text-xl">©2021 All rights reserved</span>
+            <span className="text-white  text-xl">©2021 Всички права запазени</span>
             <span className="text-white ml-2 mr-2 text-xl">|</span>
             <span className="text-white text-xl hover:cursor-pointer hover:text-yellow-500 transition-colors duration-300"> Privacy Policy</span>
             </div>

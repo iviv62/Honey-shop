@@ -3,23 +3,27 @@ import logo from '../images/logo.png';
 import { Icon } from 'react-icons-kit';
 import {phone} from 'react-icons-kit/fa/phone';
 import React,{useRef,useState} from 'react';
-import Link from 'next/link'
+import Link from 'next/link';
+import Cookies from '../components/Cookies';
 
 const TopMenu = () => {
     const [active ,setActive] = useState(false);
     
 
     return (
-    
+        <div>
+        <Cookies/>
         <header className="flex bg-black pt-2 items-center justify-around shadow-md  ">
        <Link href="/">
-            <div className="relative flex items-center h-[50px]  pl-2 ">
-                <Image
-                className="hover:cursor-pointer"
-                objectFit="contain"
-                src={logo}
-                alt="logo" />
-            </div>
+        <a>
+                <div className="relative flex items-center h-[50px]  pl-2 ">
+                    <Image
+                    className="hover:cursor-pointer"
+                    objectFit="contain"
+                    src={logo}
+                    alt="logo" />
+                </div>
+            </a>
         </Link>
         <div className="text-lg text-white flex items-center">
 
@@ -30,12 +34,10 @@ const TopMenu = () => {
         </div>
         {/*Menu*/}
         <div className="flex space-x-8 pr-4 xl:flex md:flex sm:hidden xs:hidden">
-            <Link href="/" ><a className="text-white text-lg hover:cursor-pointer hover:text-yellow-500 transition-colors duration-300 xl:block md:block sm:hidden xs:hidden">Home</a></Link>
-            <Link href="/products"><a className="text-white text-lg hover:cursor-pointer hover:text-yellow-500 transition-colors duration-300 xl:block md:block sm:hidden xs:hidden">Products</a></Link>
-            <Link href="/about"><a className="text-white text-lg hover:cursor-pointer hover:text-yellow-500 transition-colors duration-300 xl:block md:block sm:hidden xs:hidden">About Us</a></Link>
-            <Link href="/blog"><a className="text-white text-lg hover:cursor-pointer hover:text-yellow-500 transition-colors duration-300 xl:block md:block sm:hidden xs:hidden">Blog</a></Link>
-            <Link href="/ordering"><a className="text-white text-lg hover:cursor-pointer hover:text-yellow-500 transition-colors duration-300 xl:block md:block sm:hidden xs:hidden">Ordering</a></Link>
-            <Link href="/contact"><a className="text-white text-lg hover:cursor-pointer hover:text-yellow-500 transition-colors duration-300 xl:block md:block sm:hidden xs:hidden">Contacts</a></Link>              
+            <Link href="/" ><a className="text-white text-lg hover:cursor-pointer hover:text-yellow-500 transition-colors duration-300 xl:block md:block sm:hidden xs:hidden">Начало</a></Link>
+            <Link href="/about"><a className="text-white text-lg hover:cursor-pointer hover:text-yellow-500 transition-colors duration-300 xl:block md:block sm:hidden xs:hidden">За Нас</a></Link>
+            <Link href="/blog"><a className="text-white text-lg hover:cursor-pointer hover:text-yellow-500 transition-colors duration-300 xl:block md:block sm:hidden xs:hidden">Блог</a></Link>
+            <Link href="/contact"><a className="text-white text-lg hover:cursor-pointer hover:text-yellow-500 transition-colors duration-300 xl:block md:block sm:hidden xs:hidden">Контакти</a></Link>              
         </div>
         {/*End Menu*/}
 
@@ -50,17 +52,16 @@ const TopMenu = () => {
          <div className={` absolute top-[87px]  right-0 duration-500 ease-in-out text-black font-semibold flex flex-row self-end z-50 bg-yellow-500 opacity-90 w-[300px]  ${active?"visible opacity-100":"invisible opacity-0"}`} >
          <div className={`flex flex-col text-center transition-all duration-500 ease-in-out ${active?"visible opacity-100":"invisible opacity-0"}`} >
          
-           <div  className="w-[300px]  hover:bg-black text-white  duration-500 ease-in-out cursor-pointer  "><Link href="/"><a>Home</a></Link></div>
-           <div  className="w-[300px]  hover:bg-black text-white  duration-500 ease-in-out cursor-pointer  "><Link href="/products"><a>Products</a></Link></div>
-           <div  className="w-[300px]  hover:bg-black text-white  duration-500 ease-in-out cursor-pointer  "><Link href="/about"><a>About Us</a></Link></div>
-           <div  className="w-[300px]  hover:bg-black text-white  duration-500 ease-in-out cursor-pointer  "><Link href="/blog"><a>Blog</a></Link></div>
-           <div  className="w-[300px]  hover:bg-black text-white  duration-500 ease-in-out cursor-pointer  "><Link href="/ordering"><a>Ordering</a></Link></div>
-           <div  className="w-[300px]  hover:bg-black text-white  duration-500 ease-in-out cursor-pointer  "><Link href="/contact"><a>Contacts</a></Link></div>
+           <div  className="w-[300px]  hover:bg-black text-white  duration-500 ease-in-out cursor-pointer  "><Link href="/"><a>Начало</a></Link></div>
+           <div  className="w-[300px]  hover:bg-black text-white  duration-500 ease-in-out cursor-pointer  "><Link href="/about"><a>За нас</a></Link></div>
+           <div  className="w-[300px]  hover:bg-black text-white  duration-500 ease-in-out cursor-pointer  "><Link href="/blog"><a>Блог</a></Link></div>
+           <div  className="w-[300px]  hover:bg-black text-white  duration-500 ease-in-out cursor-pointer  "><Link href="/contact"><a>Контакти</a></Link></div>
          </div>
          </div>
         
           {/*End Menu*/}
         </header>
+        </div>
     )
 }
 
