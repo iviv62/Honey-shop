@@ -48,8 +48,8 @@ export const getStaticPaths = async ()=>{
                 id: post.id,
                 slug:post.slug,
                 
-            },
-            revalidate: 60
+            }
+            
         }
     })
 
@@ -65,5 +65,7 @@ export const getStaticProps = async (context) => {
     const data = await res.json()
     return{
         props:{post:data}
+        ,revalidate: 60
     }
+   
 }
