@@ -48,7 +48,8 @@ export const getStaticPaths = async ()=>{
                 id: post.id,
                 slug:post.slug,
                 
-            }
+            },
+            revalidate: 60
         }
     })
 

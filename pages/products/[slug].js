@@ -125,6 +125,9 @@ export const getStaticProps = async (context) => {
     const res = await fetch(`${API_DOMAIN}api/products/`+slug)
     const data = await res.json()
     return{
-        props:{product:data}
+        props:{
+            product:data
+        },
+        revalidate: 60
     }
 }
