@@ -20,8 +20,10 @@ const post = ({post}) => {
       <Image
       layout='fill'
       objectFit="contain"
+      priority={true}
       src={post.image}
       alt={post.image_alt} />
+      
       </div>
 
       <div class="px-4 lg:px-0 mt-12 text-gray-700 max-w-screen-md mx-auto text-lg leading-relaxed">
