@@ -55,6 +55,7 @@ import Image from 'next/image'
         layout="fill"
         objectFit="contain"
         priority={true}
+        quality={90}
         src={selectedImage?selectedImage.image:"/placeholder.jpg"} 
         alt={selectedImage?selectedImage.alt:"loading"}
         />
@@ -72,6 +73,7 @@ import Image from 'next/image'
                 src={image.image}
                 alt={image.alt}
                 priority={true}
+                quality={90}
                 width={100}
                 height={100}
                 objectFit="cover"
