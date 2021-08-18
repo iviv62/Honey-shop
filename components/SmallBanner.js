@@ -4,7 +4,7 @@ import truck from '../images/delivery_icon.png';
 const SmallBanner = () => {
     return (
         <div 
-        className="h-28 flex justify-center space-x-10 items-center my-10"
+        className="h-28 flex justify-center space-x-10 items-center mt-10"
         style={{ backgroundImage: `url('background.png')` }} >
             
 

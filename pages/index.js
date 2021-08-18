@@ -7,7 +7,8 @@ import Footer from '../components/Footer';
 import ProductSection from "../components/ProductSection";
 import OrderingSection from "../components/OrderingSection"
 import FAQ from "../components/FAQ"
-import {API_DOMAIN} from '../constants/Api'
+import {API_DOMAIN} from '../constants/Api';
+import SubscriptionCard from '../components/SubscriptionCard'
 
 export default function Home({products, faqs}) {
   return (
@@ -25,6 +26,7 @@ export default function Home({products, faqs}) {
       <SmallBanner/>
       <ProductSection products={products}/>
       <OrderingSection/>
+      <SubscriptionCard/>
       <FAQ data={faqs}/>
       </div>
   
