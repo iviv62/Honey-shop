@@ -71,3 +71,9 @@
     input:checked ~ .tab-content {
     max-height: 100vh;
     }
+
+
+    .item-carousel{
+      padding:10px;
+      margin:0!important;
+    }

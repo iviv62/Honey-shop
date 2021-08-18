@@ -3,7 +3,7 @@ import Image from 'next/image'
 const Product = ({Title, Description, Price, Availability, Img, Alt,Slug}) => {
     return (
         <div>
-        <div className="py-6 m-4">
+        <div className=" ">
         <div className="flex  min-w-sm max-w-md bg-white shadow-lg rounded-lg overflow-hidden">
 
           <div className="relative w-[150px]">

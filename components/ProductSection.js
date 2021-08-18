@@ -1,46 +1,30 @@
 import Product from "../components/Product"
 import Image from 'next/image';
 import honeycomb from '../images/honeycomb.png';
-/*const products =[
-    {
-        Title:"Honey",
-        Description:"lormdas dsakl dsakkp  dsap pd sa dppsad sp sa dskalldsklasdk  dsapldsal",
-        Price: 7,
-        Availability:"In stock"
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
+
+const responsive = {
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 1900 },
+      items: 4
     },
-    {
-        Title:"Honey",
-        Description:"lormdas dsakl dsakkp  dsap pd sa dppsad sp sa dskalldsklasdk  dsapldsal",
-        Price: 7,
-        Availability:"In stock"
+    desktop: {
+      breakpoint: { max: 1900, min: 1100 },
+      items: 3
     },
-    {
-        Title:"Honey",
-        Description:"lormdas dsakl dsakkp  dsap pd sa dppsad sp sa dskalldsklasdk  dsapldsal",
-        Price: 7,
-        Availability:"In stock"
+    tablet: {
+      breakpoint: { max: 1100, min: 800 },
+      items: 2
     },
-    {
-        Title:"Honey",
-        Description:"lormdas dsakl dsakkp  dsap pd sa dppsad sp sa dskalldsklasdk  dsapldsal",
-        Price: 7,
-        Availability:"In stock"
-    },
-    {
-        Title:"Honey",
-        Description:"lormdas dsakl dsakkp  dsap pd sa dppsad sp sa dskalldsklasdk  dsapldsal",
-        Price: 7,
-        Availability:"In stock"
-    },
-    {
-        Title:"Honey",
-        Description:"lormdas dsakl dsakkp  dsap pd sa dppsad sp sa dskalldsklasdk  dsapldsal",
-        Price: 7,
-        Availability:"In stock"
-    },
+    mobile: {
+      breakpoint: { max: 800, min: 0 },
+      items: 1
+    }
+  };
 
 
-]*/
 
 const ProductSection = ({products}) => {
     return (
@@ -56,7 +40,20 @@ const ProductSection = ({products}) => {
             <h3 className="text-4xl  font-bold">Продукти</h3>
             </div>
 
-            <div className="flex flex-wrap pb-20 justify-center  max-w-[1500px]">
+            <div className=" w-full">
+            <Carousel
+            swipeable={true}
+            draggable={true}
+            ssr={true}
+            responsive={responsive}
+            autoPlaySpeed={1000}
+            keyBoardControl={true}
+            infinite
+            itemClass={"item-carousel"}
+            customTransition="all .5"
+            transitionDuration={500}
+            containerClass="carousel-container"
+            >
                 {products.map((item)=>
                     <Product 
                     key={item.id} Id={item.id} Title={item.title} Price={item.price} 
@@ -67,7 +64,9 @@ const ProductSection = ({products}) => {
                     Slug={item.slug}
                     />
             )}
+            </Carousel>
             </div>
+            
         </div>
     )
 }

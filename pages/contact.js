@@ -3,6 +3,7 @@ import Footer from '../components/Footer';
 import TopMenu from '../components/TopMenu';
 import Head from 'next/head';
 
+
 const contact = () => {
     return (
         <div className="flex flex-col min-h-screen">
@@ -11,6 +12,8 @@ const contact = () => {
             <link rel="icon" href="/favicon.ico" />
         </Head>
             <ContactForm/>
+
+             
         </div>
     )
 }
