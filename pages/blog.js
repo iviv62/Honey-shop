@@ -2,6 +2,7 @@
 import CardsSection from '../components/blog/CardsSection';
 import Head from 'next/head';
 import {API_DOMAIN} from '../constants/Api'
+import Search from "../components/blog/Search"
 const blog = ({posts}) => {
     return (
         <div className="flex flex-col min-h-screen">
@@ -14,6 +15,9 @@ const blog = ({posts}) => {
 
           
            <h1 className="text-center text-5xl py-12 font-bold">Нашият Блог</h1>
+            <div className="flex justify-center">
+                <Search/>
+            </div>
             <CardsSection data={posts}/>
            
 

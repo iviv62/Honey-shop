@@ -1,12 +1,16 @@
 import {validateEmail} from '../hooks/validators';
 import {useState} from 'react'
 import {postData} from '../hooks/requests';
-
+import {API_DOMAIN} from '../constants/Api';
 const SubscriptionCard = () => {
     const [email, setEmail] =  useState("");
     const [success , setSuccess] = useState(false)
     const handleClick= () => {
         if(validateEmail(email)){
+            postData(`${API_DOMAIN}api/subscriptions/`, {
+              email:email,
+  
+            })
             setSuccess(true)
         }
     }

@@ -1,7 +1,7 @@
 
-.carousel-container {
-    margin: 20px;
-  }
+body{
+  font-family: 'Balsamiq Sans', cursive;
+}
   
   .selected-image {
     width: 100%;
@@ -15,11 +15,7 @@
   
   
   
-  .carousel__images {
-    display: flex;
-    max-width: 100%;
-   
-  }
+  
   
   .carousel__image-selected {
     border: 3px solid #ffa700 !important;

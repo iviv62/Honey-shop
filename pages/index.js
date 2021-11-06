@@ -10,6 +10,7 @@ import FAQ from "../components/FAQ"
 import {API_DOMAIN} from '../constants/Api';
 import SubscriptionCard from '../components/SubscriptionCard'
 
+
 export default function Home({products, faqs}) {
   return (
     <div className="flex flex-col min-h-screen flex-grow ">
@@ -28,6 +29,7 @@ export default function Home({products, faqs}) {
       <OrderingSection/>
       <SubscriptionCard/>
       <FAQ data={faqs}/>
+    
       </div>
   
     </div>

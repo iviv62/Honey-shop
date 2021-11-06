@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import Image from 'next/image'
+import ImageMagnifier from './ImageMagnifier'
 
-  const ImageCarousel  = ({ images }) => {
+const ImageCarousel = ({ images }) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [selectedImage, setSelectedImage] = useState();
   const carouselItemsRef = useRef([]);
@@ -14,16 +15,16 @@ import Image from 'next/image'
       );
 
       setSelectedImageIndex(0);
-      
+
       setSelectedImage(images[0]);
     }
   }, [images]);
 
-  const handleSelectedImageChange = (newIdx ) => {
+  const handleSelectedImageChange = (newIdx) => {
     if (images && images.length > 0) {
       setSelectedImage(images[newIdx]);
       setSelectedImageIndex(newIdx);
-     
+
     }
   };
 
@@ -48,45 +49,40 @@ import Image from 'next/image'
   };
 
   return (
-    <div className="carousel-container">
-      <div className="relative flex  h-[520px]">
-      <Image
-        className="selected-image"
-        layout="fill"
-        objectFit="contain"
-        priority={true}
-        quality={90}
-        src={selectedImage?selectedImage.image:"/placeholder.jpg"} 
-        alt={selectedImage?selectedImage.alt:"loading"}
-        />
 
-        </div>
-        
+    <div className="flex flex-row mr-10 ">
 
-      <div className="carousel ">
-        <div className="carousel__images flex-wrap  justify-center">
-          {
-            images.map((image, idx) => (
+      <div className="flex flex-col mr-10 space-y-5 sm:hidden xs:hidden md:block lg:block xl:block 2xl:block ">
+
+        {
+          images.map((image, idx) => (
+            <div className="">
+            <Image
               
-              <Image
-                onClick={() => handleSelectedImageChange(idx)}
-                src={image.image}
-                alt={image.alt}
-                priority={true}
-                quality={90}
-                width={100}
-                height={100}
-                objectFit="cover"
-                key={image.id}
-                className={`carousel__image  ${
-                  selectedImageIndex === idx && "carousel__image-selected"
+              onClick={() => handleSelectedImageChange(idx)}
+              src={image.image}
+              alt={image.alt}
+              priority={true}
+              quality={90}
+              width={100}
+              height={100}
+              objectFit="cover"
+              key={image.id}
+              className={`carousel__image   ${selectedImageIndex === idx && "carousel__image-selected"
                 }`}
-                ref={(el) => (carouselItemsRef.current[idx] = el)}
-              ></Image>
-            ))}
-        </div>
-       
+              ref={(el) => (carouselItemsRef.current[idx] = el)}
+            ></Image>
+            </div>
+          ))}
       </div>
+
+      <ImageMagnifier
+        src={selectedImage ? selectedImage.image : "/placeholder.jpg"}
+        alt={selectedImage ? selectedImage.alt : "loading"}
+        width={500}
+        height={500}
+      />
+
     </div>
   );
 };

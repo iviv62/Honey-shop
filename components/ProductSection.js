@@ -40,8 +40,8 @@ const ProductSection = ({products}) => {
             <h3 className="text-4xl  font-bold">Продукти</h3>
             </div>
 
-            <div className=" w-full">
-            <Carousel
+            <div className=" flex space-x-8 flex-wrap">
+           { /*<Carousel
             swipeable={true}
             draggable={true}
             ssr={true}
@@ -64,7 +64,17 @@ const ProductSection = ({products}) => {
                     Slug={item.slug}
                     />
             )}
-            </Carousel>
+                </Carousel>*/}
+                {products.map((item)=>
+                  <Product 
+                  key={item.id} Id={item.id} Title={item.title} Price={item.price} 
+                  Availability={item.in_stock==true?"Наличен":"Изчерпан"} 
+                  Description={item.description} 
+                  Img={item.product_images[0].image} 
+                  Alt={item.product_images[0].alt} 
+                  Slug={item.slug}
+                  />
+            )}
             </div>
             
         </div>

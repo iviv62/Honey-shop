@@ -39,62 +39,64 @@ const product = ({product}) => {
       }
 
     return (
-        <div className=" px-10 flex  min-h-screen py-10   flex-wrap justify-center ">
+        <div className="container mx-auto p-10   ">
+        <div className="  min-h-screen   flex flex-row  xs:flex-wrap sm:flex-wrap md:flex-nowrap xl:flex-nowrap  ">
 
             <Head>
                 <title>{product.meta_title}</title>
-                <meta name="description" content={product.meta_description}/>
+                <meta name="description" content={product.meta_description} />
                 <link rel="icon" href="/favicon.ico" />
                 <meta charset="UTF-8"></meta>
-                
+
             </Head>
 
-                <div className="flex flex-col  w-1/2 min-w-[300px] ">
-                    <ImageCarousel images={product.product_images} />
-                </div>
-    
-
-            <div className="flex flex-col w-1/2   ">
-                <h2 className="mb-2 leading-tight tracking-tight font-bold text-gray-800 text-2xl md:text-3xl">{product.title}</h2>
+           
+                <ImageCarousel  images={product.product_images} />
+                <div className="flex flex-row justify-center w-full">
+                    <div className="flex flex-col  ">
+                        <h2 className="mb-2 leading-tight tracking-tight font-bold text-gray-800 text-2xl md:text-3xl">{product.title}</h2>
 
 
-                <div className="flex items-center space-x-4 my-4 flex-wrap">
-                    <div>
-                        <div className="rounded-lg bg-gray-100 flex py-2 px-3 items-center">
-                            <span className="font-bold text-yellow-600 text-3xl mr-1 mt-1">{product.price}</span>
-                            <span className="text-yellow-500">лв.</span>
+                        <div className="flex w-full   space-x-4 my-4 flex-wrap">
+                            <div>
+                                <div className="rounded-lg bg-gray-100 flex py-2 px-3 ">
+                                    <span className="font-bold text-yellow-600 text-3xl mr-1 mt-1">{product.price}</span>
+                                    <span className="text-yellow-500">лв.</span>
+                                </div>
+                            </div>
+                            <div className="flex flex-col">
+                                <p className="text-green-500 text-xl font-semibold">Безплатна доставка</p>
+                                <p className="text-gray-400 text-sm">При поръчка на стоки над 55 лв. </p>
+                            </div>
+                        </div>
+
+                        <p className="text-gray-500">{product.description}</p>
+
+                        <div className="flex py-4 space-x-4">
+
+
+                            <button type="button" onClick={openModal} className="h-14 px-6 py-2 transition-colors duration-500 font-semibold rounded-xl bg-yellow-500 hover:bg-black text-white">
+                                Поръчай за 60 секунди
+                        </button>
+                            <Modal
+                                isOpen={modalIsOpen}
+                                onAfterOpen={afterOpenModal}
+                                onRequestClose={closeModal}
+                                style={customStyles}
+                                contentLabel="Example Modal"
+                            >
+                                <OrderForm product_title={product.title} />
+                            </Modal>
+
                         </div>
                     </div>
-                    <div className="flex flex-col">
-                        <p className="text-green-500 text-xl font-semibold">Безплатна доставка</p>
-                        <p className="text-gray-400 text-sm">При поръчка на стоки над 55 лв. </p>
-                    </div>
                 </div>
 
-                <p className="text-gray-500">{product.description}</p>
-
-                <div className="flex py-4 space-x-4">
-
-
-                    <button type="button" onClick={openModal} className="h-14 px-6 py-2 transition-colors duration-500 font-semibold rounded-xl bg-yellow-500 hover:bg-black text-white">
-                      Поръчай за 60 секунди
-                    </button>
-                    <Modal
-                        isOpen={modalIsOpen}
-                        onAfterOpen={afterOpenModal}
-                        onRequestClose={closeModal}
-                        style={customStyles}
-                        contentLabel="Example Modal"
-                    >
-                    <OrderForm product_title={product.title}/>
-                    </Modal>
-
-                </div>
-            </div>
 
         </div>
-     
-  
+        </div>
+
+
     )
 }
 

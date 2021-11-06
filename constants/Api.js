@@ -1,1 +1,2 @@
-export const API_DOMAIN ='http://api.pchelen-med.net/';
+export const API_DOMAIN ='http://localhost:8000/';
+//http://api.pchelen-med.net/
